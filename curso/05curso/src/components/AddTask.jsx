@@ -1,5 +1,6 @@
-function AddTasks() {
+function AddTask() {
   return
-  <h1>Add Tasks</h1>
+  
+  <h1>Add Task  </h1>
 }
-export default AddTasks;
+export default AddTask;
