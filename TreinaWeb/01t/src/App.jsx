@@ -1,14 +1,17 @@
-import Tasks from "./components/Tasks";
-import AddTask from "./components/AddTask";
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import UserForm from './components/UserForm';
+import './App.css'
+
 function App() {
   
-  
-  return (
-    <div>
-      <h1>Gerenciador De Tarefas</h1>
-      <Tasks />
-      <AddTask />
-    </div>
-  );
-}
+
+  return <>
+      <h1>01-Actions</h1>
+      <UserForm />
+      
+    </> 
+};
+
 export default App;
