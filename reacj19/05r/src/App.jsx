@@ -5,12 +5,9 @@ import UserForm from './components/UserForm';
 import './App.css'
 
 function App() {
-  return 
-  <>
-      
-  <title>Hora de Codar</title>
   
-  
+
+  return <>
       <h1>01-Actions</h1>
       <UserForm />
       
