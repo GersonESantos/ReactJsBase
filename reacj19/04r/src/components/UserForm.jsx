@@ -8,12 +8,26 @@ const UserForm = () => {
     }
 
     return (
-        <div>
+    <div>
         <form action={handleAddUser}>
-        <button type="submit">Enviar</button>
+            <div>
+                <input type="text" name="name" placeholder="Nome" />
+            </div>
+            <div>
+                <input type="email" name="email" placeholder="E-mail" />
+            </div>
+            <button type="submit">Enviar</button>
         </form>
-        </div>
-    );
+        <h3>Usuários Adicionados:</h3>
+        <ul>
+            {users.map((user, index) => (
+                <li key={index}>
+                    {user.name} - {user.email}
+                </li>
+            ))}
+        </ul>
+    </div>
+);
 };
 export default UserForm;
 
