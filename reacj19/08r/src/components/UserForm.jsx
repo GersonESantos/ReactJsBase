@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./UserForm.css"; // Importe o CSS
+import "bootstrap/dist/css/bootstrap.min.css"; // Importe o CSS do Bootstrap
 
 const UserForm = () => {
     const [users, setUsers] = useState([]);
@@ -14,23 +14,40 @@ const UserForm = () => {
     }
 
     return (
-        <div className="user-form-container">
+        <div className="container mt-4">
             <form action={handleAddUser}>
-                <div className="form-group">
-                    <input type="text" name="name" placeholder="Nome" />
+                <div className="mb-3">
+                    <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        placeholder="Nome"
+                    />
                 </div>
-                <div className="form-group">
-                    <input type="email" name="email" placeholder="E-mail" />
+                <div className="mb-3">
+                    <input
+                        type="email"
+                        name="email"
+                        className="form-control"
+                        placeholder="E-mail"
+                    />
                 </div>
-                <div className="form-group">
-                    <input type="text" name="task" placeholder="Nome da Tarefa" />
+                <div className="mb-3">
+                    <input
+                        type="text"
+                        name="task"
+                        className="form-control"
+                        placeholder="Nome da Tarefa"
+                    />
                 </div>
-                <button type="submit" className="submit-btn">Enviar</button>
+                <button type="submit" className="btn btn-primary w-100">
+                    Enviar
+                </button>
             </form>
-            <h3>Usuários Adicionados:</h3>
-            <ul className="user-list">
+            <h3 className="mt-4">Usuários Adicionados:</h3>
+            <ul className="list-group">
                 {users.map((user, index) => (
-                    <li key={index}>
+                    <li key={index} className="list-group-item">
                         {user.name} - {user.email} - {user.task}
                     </li>
                 ))}
