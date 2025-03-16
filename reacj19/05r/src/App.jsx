@@ -1,17 +1,19 @@
+import './App.css'
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import UserForm from './components/UserForm';
-import './App.css'
 
-function App() {
-  
+function App() { 
+  return (   
+    <>
+    <h1>Hora de Codar</h1>
 
-  return <>
-      <h1>01-Actions</h1>
+      <h2>1 - Actions</h2>
       <UserForm />
       
     </> 
+    );
 };
 
 export default App;
