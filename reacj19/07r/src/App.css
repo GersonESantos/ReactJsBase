@@ -40,3 +40,21 @@
 .read-the-docs {
   color: #888;
 }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  padding: 20px 0;
+}
+
+h2 {
+  text-align: center;
+  color: #666;
+  margin-bottom: 20px;
+}

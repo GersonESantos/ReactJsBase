@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./UserForm.css"; // Importe o CSS
 
 const UserForm = () => {
     const [users, setUsers] = useState([]);
@@ -6,33 +7,31 @@ const UserForm = () => {
     async function handleAddUser(formData) {
         const name = formData.get("name");
         const email = formData.get("email");
-        const task = formData.get("task"); // Novo campo: Nome da Tarefa
+        const task = formData.get("task");
 
-        // Simula uma chamada de API com delay
         await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        setUsers((prev) => [...prev, { name, email, task }]); // Adiciona a tarefa ao estado
+        setUsers((prev) => [...prev, { name, email, task }]);
     }
 
     return (
-        <div>
+        <div className="user-form-container">
             <form action={handleAddUser}>
-                <div>
+                <div className="form-group">
                     <input type="text" name="name" placeholder="Nome" />
                 </div>
-                <div>
+                <div className="form-group">
                     <input type="email" name="email" placeholder="E-mail" />
                 </div>
-                <div>
-                    <input type="text" name="task" placeholder="Nome da Tarefa" /> {/* Novo campo */}
+                <div className="form-group">
+                    <input type="text" name="task" placeholder="Nome da Tarefa" />
                 </div>
-                <button type="submit">Enviar</button>
+                <button type="submit" className="submit-btn">Enviar</button>
             </form>
             <h3>Usuários Adicionados:</h3>
-            <ul>
+            <ul className="user-list">
                 {users.map((user, index) => (
                     <li key={index}>
-                        {user.name} - {user.email} - {user.task} {/* Exibe a tarefa */}
+                        {user.name} - {user.email} - {user.task}
                     </li>
                 ))}
             </ul>
