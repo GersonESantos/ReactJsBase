@@ -89,14 +89,15 @@ const UserForm = () => {
         handleModalClose();
     };
 
+    // Função para formatar apenas a data (sem hora)
     const formatDateOnly = (date) => {
-        return date ? date.split("T")[0] : "";
+        return date ? date.split("T")[0] : ""; // Remove a parte do horário
     };
 
     return (
         <div className="container mt-4">
-            <div className="mb-3 d-flex align-items-center">
-                <label htmlFor="userEmail" className="form-label me-2 mb-0">
+            <div className="mb-3">
+                <label htmlFor="userEmail" className="form-label">
                     Digite o E-mail do Usuário:
                 </label>
                 <input
@@ -106,7 +107,6 @@ const UserForm = () => {
                     value={inputEmail}
                     onChange={handleEmailChange}
                     placeholder="Ex: gerson@example.com"
-                    style={{ maxWidth: "300px" }} // Limita a largura do input para melhor alinhamento
                 />
             </div>
             <h3>Nome do Usuário:</h3>
