@@ -11,8 +11,8 @@ const UserForm = () => {
         if (inputEmail) {
             fetchUserByEmail();
         } else {
-            setUser(null); // Limpa o usuário se o email estiver vazio
-            setTasks([]);  // Limpa as tarefas
+            setUser(null);
+            setTasks([]);
         }
     }, [inputEmail]);
 
@@ -21,8 +21,8 @@ const UserForm = () => {
             const response = await fetch(`http://localhost:3000/login?email=${encodeURIComponent(inputEmail)}`);
             const data = await response.json();
             if (data && data.length > 0 && data[0].username) {
-                setUser(data[0]); // Armazena o usuário completo
-                fetchTasks(data[0].id); // Busca as tarefas usando o ID do usuário
+                setUser(data[0]);
+                fetchTasks(data[0].id);
             } else {
                 setUser(null);
                 setTasks([]);
@@ -38,7 +38,7 @@ const UserForm = () => {
         try {
             const response = await fetch(`http://localhost:3000/user/${userId}/tasks/`);
             const data = await response.json();
-            setTasks(data); // Armazena as tarefas retornadas
+            setTasks(data);
         } catch (error) {
             console.error("Erro ao buscar tarefas:", error);
             setTasks([]);
@@ -46,7 +46,23 @@ const UserForm = () => {
     };
 
     const handleEmailChange = (event) => {
-        setInputEmail(event.target.value); // Atualiza o email conforme o usuário digita
+        setInputEmail(event.target.value);
+    };
+
+    const handleDeleteTask = async (taskId) => {
+        try {
+            const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+                method: "DELETE",
+            });
+            if (response.ok) {
+                // Remove a tarefa da lista localmente após exclusão bem-sucedida
+                setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+            } else {
+                console.error("Erro ao excluir tarefa:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Erro ao excluir tarefa:", error);
+        }
     };
 
     return (
@@ -72,16 +88,25 @@ const UserForm = () => {
                 tasks.length > 0 ? (
                     <div
                         style={{
-                            maxHeight: "200px", // Altura máxima do contêiner
-                            overflowY: "auto",  // Rolagem vertical quando ultrapassar a altura
-                            border: "1px solid #ddd", // Borda sutil para destacar
-                            borderRadius: "4px", // Bordas arredondadas
+                            maxHeight: "200px",
+                            overflowY: "auto",
+                            border: "1px solid #ddd",
+                            borderRadius: "4px",
                         }}
                     >
                         <ul className="list-group">
                             {tasks.map((task) => (
-                                <li key={task.id} className="list-group-item">
+                                <li
+                                    key={task.id}
+                                    className="list-group-item d-flex justify-content-between align-items-center"
+                                >
                                     {task.task_description}
+                                    <button
+                                        className="btn btn-danger btn-sm"
+                                        onClick={() => handleDeleteTask(task.id)}
+                                    >
+                                        Excluir
+                                    </button>
                                 </li>
                             ))}
                         </ul>
