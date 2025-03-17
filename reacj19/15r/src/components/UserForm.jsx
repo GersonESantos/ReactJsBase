@@ -5,17 +5,17 @@ const UserForm = () => {
     const [user, setUser] = useState(null);
     const [tasks, setTasks] = useState([]);
     const [inputEmail, setInputEmail] = useState("");
+    const [inputPassword, setInputPassword] = useState(""); // Novo estado para senha
+    const [isAuthenticated, setIsAuthenticated] = useState(false); // Controla login
     const [selectedTask, setSelectedTask] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [theme, setTheme] = useState("light"); // Tema inicial
 
     useEffect(() => {
-        if (inputEmail) {
+        if (isAuthenticated && inputEmail) {
             fetchUserByEmail();
-        } else {
-            setUser(null);
-            setTasks([]);
         }
-    }, [inputEmail]);
+    }, [isAuthenticated, inputEmail]);
 
     const fetchUserByEmail = async () => {
         try {
@@ -48,6 +48,23 @@ const UserForm = () => {
 
     const handleEmailChange = (event) => {
         setInputEmail(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+        setInputPassword(event.target.value);
+    };
+
+    const handleLogin = (event) => {
+        event.preventDefault();
+        // Simulação de autenticação (ajuste conforme o back-end)
+        // Aqui, apenas verifica se o email existe; idealmente, o back-end deve verificar a senha
+        fetchUserByEmail().then(() => {
+            if (user) {
+                setIsAuthenticated(true);
+            } else {
+                alert("Email ou senha inválidos!");
+            }
+        });
     };
 
     const handleDeleteTask = async (taskId) => {
@@ -93,6 +110,99 @@ const UserForm = () => {
         return date ? date.split("T")[0] : "";
     };
 
+    const handleThemeChange = (newTheme) => {
+        if (newTheme === "auto") {
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            setTheme(prefersDark ? "dark" : "light");
+        } else {
+            setTheme(newTheme);
+        }
+    };
+
+    // Aplica o tema ao documento
+    useEffect(() => {
+        document.documentElement.setAttribute("data-bs-theme", theme);
+    }, [theme]);
+
+    if (!isAuthenticated) {
+        return (
+            <div className="d-flex align-items-center justify-content-center min-vh-100 py-4 bg-body-tertiary">
+                <main className="form-signin w-100 m-auto" style={{ maxWidth: "330px" }}>
+                    <form onSubmit={handleLogin}>
+                        <h1 className="h3 mb-3 fw-normal text-center">Por favor, faça login</h1>
+
+                        <div className="form-floating">
+                            <input
+                                type="email"
+                                className="form-control"
+                                id="floatingInput"
+                                placeholder="nome@exemplo.com"
+                                value={inputEmail}
+                                onChange={handleEmailChange}
+                                required
+                            />
+                            <label htmlFor="floatingInput">Endereço de e-mail</label>
+                        </div>
+                        <div className="form-floating">
+                            <input
+                                type="password"
+                                className="form-control"
+                                id="floatingPassword"
+                                placeholder="Senha"
+                                value={inputPassword}
+                                onChange={handlePasswordChange}
+                                required
+                            />
+                            <label htmlFor="floatingPassword">Senha</label>
+                        </div>
+
+                        <div className="form-check text-start my-3">
+                            <input className="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" />
+                            <label className="form-check-label" htmlFor="flexCheckDefault">
+                                Lembrar-me
+                            </label>
+                        </div>
+                        <button className="btn btn-primary w-100 py-2" type="submit">
+                            Entrar
+                        </button>
+                        <p className="mt-5 mb-3 text-body-secondary text-center">© 2025</p>
+                    </form>
+                </main>
+
+                {/* Dropdown de Tema */}
+                <div className="theme-toggle dropdown" style={{ position: "fixed", bottom: "20px", right: "20px", zIndex: 1000 }}>
+                    <button
+                        className="btn btn-secondary theme-btn dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        style={{ fontSize: "1.2rem", width: "40px", height: "40px", display: "flex", alignItems: "center", justifyContent: "center" }}
+                    >
+                        {theme === "dark" ? "🌙" : "☀️"}
+                    </button>
+                    <ul className="dropdown-menu">
+                        <li>
+                            <a className="dropdown-item" href="#" onClick={() => handleThemeChange("light")}>
+                                ☀️ Light
+                            </a>
+                        </li>
+                        <li>
+                            <a className="dropdown-item" href="#" onClick={() => handleThemeChange("dark")}>
+                                🌙 Dark
+                            </a>
+                        </li>
+                        <li>
+                            <a className="dropdown-item" href="#" onClick={() => handleThemeChange("auto")}>
+                                Auto
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        );
+    }
+
+    // UserForm original após login
     return (
         <div className="container mt-4">
             <div className="mb-3 d-flex align-items-center">
@@ -106,7 +216,7 @@ const UserForm = () => {
                     value={inputEmail}
                     onChange={handleEmailChange}
                     placeholder="Ex: gerson@example.com"
-                    style={{ maxWidth: "300px" }} // Limita a largura do input para melhor alinhamento
+                    style={{ maxWidth: "300px" }}
                 />
             </div>
             <h3>Nome do Usuário:</h3>
@@ -281,6 +391,36 @@ const UserForm = () => {
                     </div>
                 </div>
             )}
+
+            {/* Dropdown de Tema na tela principal */}
+            <div className="theme-toggle dropdown" style={{ position: "fixed", bottom: "20px", right: "20px", zIndex: 1000 }}>
+                <button
+                    className="btn btn-secondary theme-btn dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    style={{ fontSize: "1.2rem", width: "40px", height: "40px", display: "flex", alignItems: "center", justifyContent: "center" }}
+                >
+                    {theme === "dark" ? "🌙" : "☀️"}
+                </button>
+                <ul className="dropdown-menu">
+                    <li>
+                        <a className="dropdown-item" href="#" onClick={() => handleThemeChange("light")}>
+                            ☀️ Light
+                        </a>
+                    </li>
+                    <li>
+                        <a className="dropdown-item" href="#" onClick={() => handleThemeChange("dark")}>
+                            🌙 Dark
+                        </a>
+                    </li>
+                    <li>
+                        <a className="dropdown-item" href="#" onClick={() => handleThemeChange("auto")}>
+                            Auto
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     );
 };
