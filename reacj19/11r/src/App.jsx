@@ -5,8 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Importe aqui também, se prefe
 function App() {
     return (
         <div className="container text-center">
-            <h1 className="my-4">Hora de Codar</h1>
-            <h2 className="mb-4">1 - Actions</h2>
+            {/* <h1 className="my-4">Hora de Codar</h1> */}
+            <h2 className="mb-4">TODO Lista</h2>
             <UserForm />
         </div>
     );

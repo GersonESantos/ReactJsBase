@@ -2,30 +2,46 @@ import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const UserForm = () => {
-    const [userName, setUserName] = useState(""); // Estado para armazenar o nome do usuário
+    const [user, setUser] = useState(null); // Estado para armazenar o usuário completo
+    const [tasks, setTasks] = useState([]); // Estado para armazenar as tarefas
     const [inputEmail, setInputEmail] = useState(""); // Estado para o email digitado
 
-    // Buscar o nome do usuário com base no email ao mudar o input
+    // Buscar o usuário e suas tarefas com base no email
     useEffect(() => {
         if (inputEmail) {
             fetchUserByEmail();
         } else {
-            setUserName(""); // Limpa o nome se o email estiver vazio
+            setUser(null); // Limpa o usuário se o email estiver vazio
+            setTasks([]);  // Limpa as tarefas
         }
-    }, [inputEmail]); // Executa sempre que inputEmail mudar
+    }, [inputEmail]);
 
     const fetchUserByEmail = async () => {
         try {
             const response = await fetch(`http://localhost:3000/login?email=${encodeURIComponent(inputEmail)}`);
             const data = await response.json();
             if (data && data.length > 0 && data[0].username) {
-                setUserName(data[0].username); // Acessa o username do primeiro elemento do array
+                setUser(data[0]); // Armazena o usuário completo (inclui id, username, etc.)
+                fetchTasks(data[0].id); // Busca as tarefas usando o ID do usuário
             } else {
-                setUserName("Usuário não encontrado");
+                setUser(null);
+                setTasks([]);
             }
         } catch (error) {
             console.error("Erro ao buscar usuário:", error);
-            setUserName("Erro ao carregar");
+            setUser(null);
+            setTasks([]);
+        }
+    };
+
+    const fetchTasks = async (userId) => {
+        try {
+            const response = await fetch(`http://localhost:3000/user/${userId}/tasks/`);
+            const data = await response.json();
+            setTasks(data); // Armazena as tarefas retornadas
+        } catch (error) {
+            console.error("Erro ao buscar tarefas:", error);
+            setTasks([]);
         }
     };
 
@@ -49,7 +65,24 @@ const UserForm = () => {
                 />
             </div>
             <h3>Nome do Usuário:</h3>
-            <p>{userName || "Digite um email para buscar"}</p> {/* Exibe instrução inicial */}
+            <p>{user ? user.username : "Digite um email para buscar"}</p>
+
+            <h3>Tarefas do Usuário:</h3>
+            {user ? (
+                tasks.length > 0 ? (
+                    <ul className="list-group">
+                        {tasks.map((task) => (
+                            <li key={task.id} className="list-group-item">
+                                {task.task_description}
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>Nenhuma tarefa encontrada para este usuário.</p>
+                )
+            ) : (
+                <p>Selecione um usuário para ver as tarefas.</p>
+            )}
         </div>
     );
 };
