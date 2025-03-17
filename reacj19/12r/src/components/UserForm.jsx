@@ -21,7 +21,7 @@ const UserForm = () => {
             const response = await fetch(`http://localhost:3000/login?email=${encodeURIComponent(inputEmail)}`);
             const data = await response.json();
             if (data && data.length > 0 && data[0].username) {
-                setUser(data[0]); // Armazena o usuário completo (inclui id, username, etc.)
+                setUser(data[0]); // Armazena o usuário completo
                 fetchTasks(data[0].id); // Busca as tarefas usando o ID do usuário
             } else {
                 setUser(null);
@@ -70,13 +70,22 @@ const UserForm = () => {
             <h3>Tarefas do Usuário:</h3>
             {user ? (
                 tasks.length > 0 ? (
-                    <ul className="list-group">
-                        {tasks.map((task) => (
-                            <li key={task.id} className="list-group-item">
-                                {task.task_description}
-                            </li>
-                        ))}
-                    </ul>
+                    <div
+                        style={{
+                            maxHeight: "200px", // Altura máxima do contêiner
+                            overflowY: "auto",  // Rolagem vertical quando ultrapassar a altura
+                            border: "1px solid #ddd", // Borda sutil para destacar
+                            borderRadius: "4px", // Bordas arredondadas
+                        }}
+                    >
+                        <ul className="list-group">
+                            {tasks.map((task) => (
+                                <li key={task.id} className="list-group-item">
+                                    {task.task_description}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 ) : (
                     <p>Nenhuma tarefa encontrada para este usuário.</p>
                 )
