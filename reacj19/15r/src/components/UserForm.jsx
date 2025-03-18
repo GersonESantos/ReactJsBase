@@ -5,39 +5,22 @@ const UserForm = () => {
     const [user, setUser] = useState(null);
     const [tasks, setTasks] = useState([]);
     const [inputEmail, setInputEmail] = useState("");
-    const [inputPassword, setInputPassword] = useState(""); // Novo estado para senha
-    const [isAuthenticated, setIsAuthenticated] = useState(false); // Controla login
+    const [inputPassword, setInputPassword] = useState("");
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const [theme, setTheme] = useState("light"); // Tema inicial
+    const [theme, setTheme] = useState("light");
 
     useEffect(() => {
-        if (isAuthenticated && inputEmail) {
-            fetchUserByEmail();
+        if (isAuthenticated && user) {
+            fetchTasks(user.id);
         }
-    }, [isAuthenticated, inputEmail]);
-
-    const fetchUserByEmail = async () => {
-        try {
-            const response = await fetch(`http://localhost:3000/login?email=${encodeURIComponent(inputEmail)}`);
-            const data = await response.json();
-            if (data && data.length > 0 && data[0].username) {
-                setUser(data[0]);
-                fetchTasks(data[0].id);
-            } else {
-                setUser(null);
-                setTasks([]);
-            }
-        } catch (error) {
-            console.error("Erro ao buscar usuário:", error);
-            setUser(null);
-            setTasks([]);
-        }
-    };
+    }, [isAuthenticated, user]);
 
     const fetchTasks = async (userId) => {
         try {
             const response = await fetch(`http://localhost:3000/user/${userId}/tasks/`);
+            if (!response.ok) throw new Error("Erro ao buscar tarefas");
             const data = await response.json();
             setTasks(data);
         } catch (error) {
@@ -54,17 +37,26 @@ const UserForm = () => {
         setInputPassword(event.target.value);
     };
 
-    const handleLogin = (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
-        // Simulação de autenticação (ajuste conforme o back-end)
-        // Aqui, apenas verifica se o email existe; idealmente, o back-end deve verificar a senha
-        fetchUserByEmail().then(() => {
-            if (user) {
+        try {
+            const url = `http://localhost:3000/login?email=${encodeURIComponent(inputEmail)}&password=${encodeURIComponent(inputPassword)}`;
+            console.log("Requisição enviada:", url); // Log para depuração
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log("Resposta do servidor:", data); // Log para depuração
+            if (response.ok && data.length > 0) {
+                setUser(data[0]);
                 setIsAuthenticated(true);
+                setInputEmail(""); // Limpa o campo de email
+                setInputPassword(""); // Limpa o campo de senha
             } else {
                 alert("Email ou senha inválidos!");
             }
-        });
+        } catch (error) {
+            console.error("Erro ao fazer login:", error);
+            alert("Erro ao conectar ao servidor! Verifique se o servidor está rodando.");
+        }
     };
 
     const handleDeleteTask = async (taskId) => {
@@ -119,7 +111,6 @@ const UserForm = () => {
         }
     };
 
-    // Aplica o tema ao documento
     useEffect(() => {
         document.documentElement.setAttribute("data-bs-theme", theme);
     }, [theme]);
@@ -169,7 +160,6 @@ const UserForm = () => {
                     </form>
                 </main>
 
-                {/* Dropdown de Tema */}
                 <div className="theme-toggle dropdown" style={{ position: "fixed", bottom: "20px", right: "20px", zIndex: 1000 }}>
                     <button
                         className="btn btn-secondary theme-btn dropdown-toggle"
@@ -202,7 +192,6 @@ const UserForm = () => {
         );
     }
 
-    // UserForm original após login
     return (
         <div className="container mt-4">
             <div className="mb-3 d-flex align-items-center">
@@ -215,7 +204,7 @@ const UserForm = () => {
                     className="form-control"
                     value={inputEmail}
                     onChange={handleEmailChange}
-                    placeholder="Ex: gerson@example.com"
+                    placeholder="Ex: ger@gmail.com"
                     style={{ maxWidth: "300px" }}
                 />
             </div>
@@ -274,7 +263,6 @@ const UserForm = () => {
                 <p>Selecione um usuário para ver as tarefas.</p>
             )}
 
-            {/* Modal de Edição */}
             {selectedTask && (
                 <div
                     className={`modal fade ${showModal ? "show d-block" : ""}`}
@@ -392,7 +380,6 @@ const UserForm = () => {
                 </div>
             )}
 
-            {/* Dropdown de Tema na tela principal */}
             <div className="theme-toggle dropdown" style={{ position: "fixed", bottom: "20px", right: "20px", zIndex: 1000 }}>
                 <button
                     className="btn btn-secondary theme-btn dropdown-toggle"
