@@ -1,7 +1,6 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import UserForm from './components/UserForm';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Importe aqui também, se preferir centralizar
+
 import './App.css'
 
 function App() {
