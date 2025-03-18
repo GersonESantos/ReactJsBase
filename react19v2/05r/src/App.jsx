@@ -1,16 +1,24 @@
-import UserForm from './components/UserForm';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importe aqui também, se preferir centralizar
+import { useState }  from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import './App.css'
+const UserForm = () => {
+    const [users, setUsers] = useState([]);
 
-function App() {
-  
+    async function handleAddUser(formData) {
+        
+    const email = formData.get("email");
 
-  return <>
-      <h1>01-Actions</h1>
-      <UserForm />
-      
-    </> 
+    // Simula uma chamada de API com delay
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    setUsers((prev) => [...prev, {  email }]);      
+    }
+
+    return (
+    <div>
+        <h2>Usuários</h2>
+    </div>
+);
 };
+export default UserForm;
 
-export default App;
