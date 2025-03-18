@@ -1,15 +1,17 @@
-import './App.css';
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
 import UserForm from './components/UserForm';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importe aqui também, se preferir centralizar
+import './App.css'
 
 function App() {
-    return (
-        <div className="container text-center">
-            <h1 className="my-4">Hora de Codar</h1>
-            <h2 className="mb-4">1 - Actions</h2>
-            <UserForm />
-        </div>
-    );
-}
+  
+
+  return <>
+      <h1>01-Actions</h1>
+      <UserForm />
+      
+    </> 
+};
 
 export default App;
