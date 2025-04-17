@@ -6,9 +6,14 @@ function App() {
   function darLike() {
     setLike(like + 1)
   }
+
+
 useEffect(() => {
-  console.log('useEffect rodou')
+  if (like > 9) {
+  alert(`useEffect rodou voce passou de ${like} likes`)
+}
 })
+
   return (
     <>
       <div>
