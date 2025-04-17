@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
@@ -6,7 +6,9 @@ function App() {
   function darLike() {
     setLike(like + 1)
   }
-
+useEffect(() => {
+  console.log('useEffect rodou')
+})
   return (
     <>
       <div>
