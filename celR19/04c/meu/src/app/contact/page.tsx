@@ -1,8 +1,11 @@
+import Menu from "@/components/Menu";
+import Footer from "@/components/Footer";
 const  Contact = () =>  {
     return (
       <div>
-        <h1>Menu</h1>
+        <Menu />
         <h2>Contato</h2>
+        <Footer />
       </div>
      
     );
