@@ -1,14 +1,15 @@
+import React from 'react';
+
 const Menu = () => {
     return (
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">Sobre</a></li>
-                <li><a href="/contact">Contato</a></li>
-                
+                <li key="home"><a href="/" aria-label="Home">Home</a></li>
+                <li key="about"><a href="/about" aria-label="Sobre">Sobre</a></li>
+                <li key="contact"><a href="/contact" aria-label="Contato">Contato</a></li>
             </ul>
-        
         </nav>
     );
-    }
-    export default Menu;
+};
+
+export default Menu;
