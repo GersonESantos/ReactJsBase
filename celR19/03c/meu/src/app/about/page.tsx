@@ -1,10 +1,11 @@
-
+import Menu from "@/components/Menu";
+import Footer from "@/components/Footer";
 const  About = () =>  {
     return (
       <div>
-        <h1>Menu</h1>
-        <h2>Sobre</h2>
-        
+        <Menu />
+        <h2>Sobre a Empresa</h2>
+        <Footer />
       </div>
      
     );
