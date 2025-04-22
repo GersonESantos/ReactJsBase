@@ -9,7 +9,7 @@ import './UserForm.css';
 
 const UserForm = () => {
   const { user, isAuthenticated, error, handleLogin, setEmail, setPassword, email, password } = useAuth();
-  const { tasks } = useTasks(user, isAuthenticated); // Removido fetchTasks
+  const { tasks, fetchTasks } = useTasks(user, isAuthenticated);
   const { theme, handleThemeChange, updateThemeIcon } = useTheme();
 
   return (
