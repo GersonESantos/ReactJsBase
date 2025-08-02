@@ -22,11 +22,11 @@ const Hero = () => {
         <StyledHero>
           <Container>
             <Grid container spacing={2} alignItems="center">
-                <Grid item xs={8} md={4}>
+                <Grid xs={8} md={4}>
                     <StyledImg src={Avatar} alt="Gerson" /> 
                     <h1 style={{ color: "white" }}>Welcome to My Portfolio</h1>
                 </Grid>
-                <Grid item xs={4} md={8} sx={{ display: "flex", justifyContent: "center" }}>
+                <Grid xs={4} md={8} sx={{ display: "flex", justifyContent: "center" }}>
                   <Typography color="primary.contrastText" variant="h1" pb={2} textAlign="center">
                                 Gerson E. S.
                             </Typography>
