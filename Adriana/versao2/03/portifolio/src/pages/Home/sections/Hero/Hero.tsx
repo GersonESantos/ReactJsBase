@@ -1,13 +1,6 @@
 import { styled } from "@mui/material"
 const Hero = () => {  
 
-const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme || 'light';
-  });
-
-
-
     const StyledHero = styled("div")(() => ({
         display: "flex",
         alignItems: "center",
