@@ -1,9 +1,17 @@
 import { useState, useEffect } from 'react';
 import { styled } from "@mui/material";
 import './App.css';
-import UserProfileCard from './UserProfileCard';
 
-const Hero = ({ theme }) => {  
+interface HeroProps {
+  theme: string;
+}
+
+interface User {
+  name: string;
+  email: string;
+}
+
+const Hero: React.FC<HeroProps> = ({ theme }) => {  
     const StyledHero = styled("div")(() => ({
         display: "flex",
         alignItems: "center",
@@ -23,14 +31,14 @@ const Hero = ({ theme }) => {
     );
 };
 
-function App() {
+const App: React.FC = () => {
     // 1. Estado para o tema atual
-    const [theme, setTheme] = useState(() => {
+    const [theme, setTheme] = useState<string>(() => {
         const savedTheme = localStorage.getItem('theme');
         return savedTheme || 'light';
     });
 
-    const [currentUser, setCurrentUser] = useState(null);
+    const [currentUser, setCurrentUser] = useState<User | null>(null);
 
     // 2. Efeito para aplicar o tema e salvar no localStorage
     useEffect(() => {
@@ -40,7 +48,7 @@ function App() {
     }, [theme]);
 
     // 3. Função para lidar com a mudança de tema pelo select
-    const handleThemeChange = (event) => {
+    const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setTheme(event.target.value);
     };
 
@@ -73,10 +81,12 @@ function App() {
             </header>
 
             {currentUser ? (
-                <UserProfileCard onLogout={handleLogout} />
+                <div className="user-profile">
+                    <h2>Bem-vindo, {currentUser.name}!</h2>
+                    <p>Email: {currentUser.email}</p>
+                </div>
             ) : (
                 <div className="login-container">
-                    {/* Integra o Hero Component com os temas */}
                     <Hero theme={theme} />
                     
                     <div className="extra-links">
@@ -87,6 +97,6 @@ function App() {
             )}
         </div>
     );
-}
+};
 
 export default App;
