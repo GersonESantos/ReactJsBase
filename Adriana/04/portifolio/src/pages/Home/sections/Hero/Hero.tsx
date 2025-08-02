@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Typography, styled } from "@mui/material"
-import Avatar from "../../../../assets/images/avatar.jpg"
+import Avatar from "../../../../assets/images/GersonES2025.jpg"
 
 
 const Hero = () => {
