@@ -2,15 +2,9 @@ import { Box, Container, Grid, Typography, styled } from "@mui/material"
 import Avatar from "../../../../assets/images/GersonES2025.jpg"
 import DownloadIcon from '@mui/icons-material/Download';
 import StyledButton from "../../../../components/StyledButton/StyledButton";
-import CV from "../../../../assets/pdfs/Open.pdf"
-
+import CV from "../../../../assets/pdfs/Open.pdf";
 import EmailIcon from '@mui/icons-material/Email';
-
-
-
-
 const Hero = () => {
-
     const StyledHero = styled("div")(({ theme }) => ({
         backgroundColor: theme.palette.primary.main,
         height: "100vh",
@@ -18,7 +12,6 @@ const Hero = () => {
         alignItems: "center",
         [theme.breakpoints.up('xs')]: { // <= mobile
             paddingTop: "100px",
-
         },
         [theme.breakpoints.up('md')]: { // >=mobile
             paddingTop: "0",
@@ -54,7 +47,6 @@ const Hero = () => {
         const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.open(mailtoLink);
     }
-
 
     // const StyledImg = styled("img")(({ theme }) => ({
     //     width: "75%",
