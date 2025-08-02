@@ -1,39 +1,58 @@
-import { styled , Container, Typography} from "@mui/material"
-import Avatar from "../../../../assets/images/GersonES2025.jpg"
-import { Grid } from "@mui/material"
+import { Box, Container, Grid, Typography, styled } from "@mui/material"
+import Avatar from "../../../../assets/images/avatar.jpg"
 
-const Hero = () => {  
-    const StyledHero = styled("div")(() => ({
+
+const Hero = () => {
+
+    const StyledHero = styled("div")(({ theme }) => ({
+        backgroundColor: theme.palette.primary.main,
+        height: "100vh",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-        background: "black",
-    }));
+        [theme.breakpoints.up('xs')]: { // <= mobile
+            paddingTop: "100px",
 
-    const StyledImg = styled("img")(() => ({   
+        },
+        [theme.breakpoints.up('md')]: { // >=mobile
+            paddingTop: "0",
+        }
+    }))
+
+    const StyledImg = styled("img")(({ theme }) => ({
+        width: "75%",
         borderRadius: "50%",
-        width: "300px",
-        height: "300px", // Mantém proporção circular
-        objectFit: "cover", // Garante que a imagem se ajuste bem
-    }));
+        border: `1px solid ${theme.palette.primary.contrastText}`
+    }))
 
     return (
-        <StyledHero>
-          <Container>
-            <Grid container spacing={2} alignItems="center">
-                <Grid xs={8} md={4}>
-                    <StyledImg src={Avatar} alt="Gerson" /> 
-                    <h1 style={{ color: "white" }}>Welcome to My Portfolio</h1>
-                </Grid>
-                <Grid xs={4} md={8} sx={{ display: "flex", justifyContent: "center" }}>
-                  <Typography color="primary.contrastText" variant="h1" pb={2} textAlign="center">
-                                Gerson E. S.
-                            </Typography>
-                </Grid>
-            </Grid> 
-          </Container>
-        </StyledHero>
+        <>
+            <StyledHero>
+                <Container maxWidth="lg">
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} md={5}>
+                            <Box position="relative">
+                                
+                                <Box position="relative" textAlign="center">
+                                    <StyledImg src={Avatar} />
+                                </Box>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12} md={7}>
+                            <Typography color="primary.contrastText" variant="h1" textAlign="center" pb={2}>Adriana Saty</Typography>
+                            <Typography color="primary.contrastText" variant="h2" textAlign="center" >I'm a Software Engineer</Typography>
+                            <Grid container display="flex" justifyContent="center" spacing={3} pt={3}>
+                                <Grid item xs={12} md={4} display="flex" justifyContent="center">
+                                    
+                                </Grid>
+                                <Grid item xs={12} md={4} display="flex" justifyContent="center">
+                                    
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Container>
+            </StyledHero>
+        </>
     )
 }
 
