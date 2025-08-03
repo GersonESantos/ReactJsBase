@@ -2,19 +2,12 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Hero from './pages/Home/sections/Hero/Hero';
 
-interface User {
-  name: string;
-  email: string;
-}
-
 const App: React.FC = () => {
     // 1. Estado para o tema atual
     const [theme, setTheme] = useState<string>(() => {
         const savedTheme = localStorage.getItem('theme');
         return savedTheme || 'light';
     });
-
-    const [currentUser, setCurrentUser] = useState<User | null>(null);
 
     // 2. Efeito para aplicar o tema e salvar no localStorage
     useEffect(() => {
@@ -28,14 +21,6 @@ const App: React.FC = () => {
         setTheme(event.target.value);
     };
 
-    const handleLogout = () => {
-        setCurrentUser(null);
-    };
-
-    const handleLogin = () => {
-        setCurrentUser({ name: 'Usuário Teste', email: 'teste@email.com' });
-    };
-
     return (
         <div className="app-container">
             <header className="app-header">
@@ -47,30 +32,16 @@ const App: React.FC = () => {
                         <option value="expressive">Expressivo ✨</option>
                     </select>
                 </div>
-                
-                {/* Botão de login/logout */}
-                {currentUser ? (
-                    <button onClick={handleLogout} className="auth-button">Logout</button>
-                ) : (
-                    <button onClick={handleLogin} className="auth-button">Login</button>
-                )}
             </header>
 
-            {currentUser ? (
-                <div className="user-profile">
-                    <h2>Bem-vindo, {currentUser.name}!</h2>
-                    <p>Email: {currentUser.email}</p>
+            <div className="content-container">
+                <Hero theme={theme} />
+                
+                <div className="extra-links">
+                    <p>Explore meu portfólio! <a href="#">Veja meus projetos</a></p>
+                    <p><a href="#">Entre em contato</a></p>
                 </div>
-            ) : (
-                <div className="login-container">
-                    <Hero theme={theme} />
-                    
-                    <div className="extra-links">
-                        <p>Ainda não faz parte? <a href="#">Crie sua conta!</a></p>
-                        <p><a href="#">Esqueceu a senha?</a></p>
-                    </div>
-                </div>
-            )}
+            </div>
         </div>
     );
 };
