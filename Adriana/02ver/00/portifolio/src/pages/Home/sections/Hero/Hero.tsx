@@ -30,6 +30,30 @@ const StyledImg = styled("img")(() => ({
         height: "300px", // Mantém proporção circular
         objectFit: "cover", // Garante que a imagem se ajuste bem
     }));
+
+    const handleDownload = () => {
+        console.log("download")
+        // Create a link element
+        const link = document.createElement('a');
+        link.href = CV
+        link.download = 'example.pdf'; // Set the download attribute to specify the file name
+        // Append the link to the body
+        document.body.appendChild(link);
+        // Trigger the click event
+        link.click();
+        // Remove the link from the body
+        document.body.removeChild(link);
+    };
+
+    const handleEmail = () => {
+        const emailAddress = 'example@example.com';
+        const subject = 'Subject';
+        const body = 'Hello! I saw your portfolio...';
+
+        const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(mailtoLink);
+    }
+
     return (
          <>
             <StyledHero>
