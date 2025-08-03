@@ -24,6 +24,7 @@ const StyledImg = styled("img")(() => ({
     }));
     return (
         <StyledHero>
+            <StyledImg src={Avatar} />
             <h1>Welcome to My Portfolio</h1>
         </StyledHero>
     );
