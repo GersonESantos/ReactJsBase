@@ -1,12 +1,11 @@
-import Home from "./pages/Home/Home"
+import Home from "./pages/Home/home"
 
-
-const App = () => {
-
+const App = () => {  
 
   return (
     <>
-      <Home />
+        APP
+        <Home/> 
     </>
   )
 }
