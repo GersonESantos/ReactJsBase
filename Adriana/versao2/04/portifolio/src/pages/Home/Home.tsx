@@ -1,16 +1,12 @@
-
 import Hero from "./sections/Hero/Hero"
 
+const Home = () => {  
 
-const Home = () => {
-
-
-    return (
-        <>
-            
-            <Hero />
-        </>
-    )
+  return (
+    <>
+        <Hero/>
+    </>
+  )
 }
 
 export default Home
