@@ -5,7 +5,7 @@ import StyledButton from "../../../../components/StyledButton/StyledButton";
 import CV from "../../../../assets/pdfs/Open.pdf";
 import EmailIcon from '@mui/icons-material/Email';
 import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimatedBackground"
-
+import NavBar from "../../../../components/NavBar/NavBar"
 interface HeroProps {
   theme: string;
 }
@@ -99,7 +99,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
                                     </StyledButton>
                                 </Grid>
                             </Grid>
-                            
+                            <NavBar />
                             <Grid container spacing={3} sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
                                 <Grid item xs={12} md={4} sx={{ display: "flex", justifyContent: "center" }}>
                                     {/* Conteúdo adicional aqui */}

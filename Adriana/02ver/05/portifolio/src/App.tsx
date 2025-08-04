@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Hero from './pages/Home/sections/Hero/Hero';
 
+
 const App: React.FC = () => {
     // 1. Estado para o tema atual
     const [theme, setTheme] = useState<string>(() => {
