@@ -4,6 +4,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import StyledButton from "../../../../components/StyledButton/StyledButton";
 import CV from "../../../../assets/pdfs/Open.pdf";
 import EmailIcon from '@mui/icons-material/Email';
+import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimatedBackground"
 const Hero = () => {
     const StyledHero = styled("div")(({ theme }) => ({
         backgroundColor: theme.palette.primary.main,
@@ -61,7 +62,9 @@ const Hero = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={5}>
                             <Box position="relative">
-                                
+                                    <Box width={"150%"} position="absolute" top={-100} right={0}>
+                                    <AnimatedBackground />
+                                </Box>
                                 <Box position="relative" textAlign="center">
                                     <StyledImg src={Avatar} />
                                     <h1 style={{ color: "white" }}>Welcome to My Portfolio</h1>
