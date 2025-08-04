@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { styled } from "@mui/material";
-import { styled } from "@mui/material"
-import './App.css';
 
 interface HeroProps {
   theme: string;
