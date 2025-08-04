@@ -16,7 +16,7 @@ export const StyledNavLink = styled("a")(() => ({
 export const StyledMobileToolbar = styled(Toolbar)(({ theme }) => ({
     [theme.breakpoints.up('xs')]: {
         display: "flex",
-        justifyContent: "end"
+        justifyContent: "flex-end" // Melhor que "end"
     },
     [theme.breakpoints.up('md')]: {
         display: "none",
@@ -33,7 +33,8 @@ export const StyledDesktopToolbar = styled(Toolbar)(({ theme }) => ({
     },
 }));
 
-export default function Navbar() {
+// ✅ CORRIGIDO: Nome consistente
+export default function NavBar() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -54,7 +55,11 @@ export default function Navbar() {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="absolute">
+            {/* ✅ CORRIGIDO: position="fixed" */}
+            <AppBar position="fixed" sx={{ 
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+                backdropFilter: "blur(10px)"
+            }}>
                 <StyledMobileToolbar>
                     <IconButton
                         size="large"
@@ -100,6 +105,6 @@ export default function Navbar() {
                     </MenuItem>
                 </StyledDesktopToolbar>
             </AppBar>
-        </Box >
+        </Box>
     );
 }
