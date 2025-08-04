@@ -37,7 +37,7 @@ const App: React.FC = () => {
 
             <div className="content-container">
                 <Hero theme={theme} />
-                <NavBar />
+                  <Navbar />
                 <div className="extra-links">
                     <p>Explore meu portfólio! <a href="#">Veja meus projetos</a></p>
                     <p><a href="#">Entre em contato</a></p>
