@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography, styled } from "@mui/material"
+import { Container, Grid,  styled } from "@mui/material"
 import Avatar from "../../../../assets/images/GersonES2025.jpg"
 
 
@@ -29,7 +29,7 @@ const Hero = () => {
             <StyledHero>
                 <Container maxWidth="lg">
                     <Grid container spacing={2}>
-                        
+                        <StyledImg src={Avatar} />
                     </Grid>
                 </Container>
             </StyledHero>

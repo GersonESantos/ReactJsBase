@@ -1,5 +1,5 @@
-import Hero from "./sections/Hero/Hero"
 import NavBar from "../../components/NavBar/NavBar"
+import Hero from "./sections/Hero/Hero"
 
 interface HomeProps {
   theme: string;
@@ -8,8 +8,8 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ theme }) => {  
   return (
     <>
-        <Hero theme={theme} />
         <NavBar />
+        <Hero theme={theme} />
     </>
   )
 }
