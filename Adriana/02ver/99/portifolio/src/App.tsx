@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import Hero from './pages/Home/sections/Hero/Hero';
-
+import Home from './pages/Home/Home';
 
 const App: React.FC = () => {
     // 1. Estado para o tema atual
@@ -36,8 +36,8 @@ const App: React.FC = () => {
             </header>
 
             <div className="content-container">
-                <Hero theme={theme} />
-                
+                <Home  />
+
                 <div className="extra-links">
                     <p>Explore meu portfólio! <a href="#">Veja meus projetos</a></p>
                     <p><a href="#">Entre em contato</a></p>

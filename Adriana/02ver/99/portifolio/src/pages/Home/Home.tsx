@@ -1,17 +1,16 @@
 import NavBar from "../../components/NavBar/NavBar"
 import Hero from "./sections/Hero/Hero"
 
-interface HomeProps {
-  theme: string;
-}
 
-const Home: React.FC<HomeProps> = ({ theme }) => {  
-  return (
-    <>
-        <NavBar />
-        <Hero theme={theme} />
-    </>
-  )
+const Home = () => {
+
+
+    return (
+        <>
+            <NavBar />
+            <Hero />
+        </>
+    )
 }
 
 export default Home
