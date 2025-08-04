@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import Hero from './pages/Home/sections/Hero/Hero';
-import NavBar from './components/NavBar/NavBar';
 
 const App: React.FC = () => {
     // 1. Estado para o tema atual
