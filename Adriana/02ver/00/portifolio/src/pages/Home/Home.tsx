@@ -1,11 +1,14 @@
 import Hero from "./sections/Hero/Hero"
-
 import NavBar from "../../components/NavBar/NavBar"
-const Home = () => {  
 
+interface HomeProps {
+  theme: string;
+}
+
+const Home: React.FC<HomeProps> = ({ theme }) => {  
   return (
     <>
-        <Hero />
+        <Hero theme={theme} />
         <NavBar />
     </>
   )
