@@ -1,0 +1,168 @@
+/* App.css */
+/* App.css - Adicione estas regras ao final do arquivo */
+
+/* Estilo para o texto do nome no tema claro */
+:root.light-theme h1,
+:root.light-theme .hero-title {
+  color: #333333 !important; /* Cinza escuro */
+}
+
+/* Mantém as cores originais para outros temas */
+:root.dark-theme h1,
+:root.dark-theme .hero-title {
+  color: #ffffff;
+}
+
+:root.expressive-theme h1,
+:root.expressive-theme .hero-title {
+  color: #ffffff;
+}
+
+/* Se for um Typography do Material-UI */
+:root.light-theme .MuiTypography-root {
+  color: #333333 !important;
+}
+.app-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  position: fixed;
+  bottom: 20px; /* Muda de top para bottom */
+  right: 20px;   /* Mantém no lado direito */
+  z-index: 1000;
+  width: auto;
+  height: auto;
+  left: auto;    /* Remove o left: 0 para não ocupar toda a largura */
+}
+
+.theme-selector-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Adiciona sombra sutil */
+}
+
+.theme-label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.theme-select {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  font-size: 0.9rem;
+  min-width: 120px;
+  backdrop-filter: blur(5px);
+}
+
+.theme-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.content-container {
+  padding-top: 0; /* Remove o padding superior já que o header não está mais no topo */
+  min-height: 100vh;
+  padding-bottom: 80px; /* Adiciona padding inferior para não tampar o conteúdo */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .app-header {
+    bottom: 10px;
+    right: 10px;
+    padding: 0.3rem 0.8rem;
+  }
+  
+  .theme-selector-container {
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+  }
+  
+  .theme-label {
+    display: none; /* Esconde o label em telas pequenas */
+  }
+  
+  .theme-select {
+    min-width: 100px;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .content-container {
+    padding-bottom: 70px;
+  }
+}
+/* App.css - Adicione estas regras onde estão os outros estilos de tema */
+
+/* Estilo para botões no tema claro */
+:root.light-theme button,
+:root.light-theme .MuiButton-root {
+  border-color: #333333 !important; /* Moldura cinza escura */
+  color: #333333 !important; /* Texto cinza escuro */
+}
+
+/* Estilo para botões com ícones no tema claro */
+:root.light-theme .MuiButton-outlined {
+  border-color: #333333 !important;
+  color: #333333 !important;
+}
+
+/* Estilo para ícones dentro dos botões no tema claro */
+:root.light-theme .MuiSvgIcon-root {
+  color: #333333 !important;
+}
+
+/* Hover dos botões no tema claro */
+:root.light-theme button:hover,
+:root.light-theme .MuiButton-root:hover {
+  background-color: #f5f5f5 !important;
+  border-color: #222222 !important;
+}
+
+/* Mantém as cores originais para tema escuro */
+:root.dark-theme button,
+:root.dark-theme .MuiButton-root {
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+:root.dark-theme .MuiSvgIcon-root {
+  color: #ffffff !important;
+}
+
+/* Mantém as cores originais para tema expressivo */
+:root.expressive-theme button,
+:root.expressive-theme .MuiButton-root {
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+:root.expressive-theme .MuiSvgIcon-root {
+  color: #ffffff !important;
+}
+
+/* Se você tiver classes específicas para os botões, adicione também */
+:root.light-theme .download-button,
+:root.light-theme .email-button {
+  border-color: #333333 !important;
+  color: #333333 !important;
+}
+
+:root.light-theme .download-button:hover,
+:root.light-theme .email-button:hover {
+  background-color: #f0f0f0 !important;
+  border-color: #222222 !important;
+}
