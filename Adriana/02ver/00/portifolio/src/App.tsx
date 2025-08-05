@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Hero from './pages/Home/sections/Hero/Hero';
 import NavBar from "../src/components/NavBar/NavBar"
-
+import About from "./pages/Home/sections/About/About";
 const App: React.FC = () => {
     // 1. Estado para o tema atual
     const [theme, setTheme] = useState<string>(() => {
@@ -38,6 +38,7 @@ const App: React.FC = () => {
             <div className="content-container">
                 <Hero theme={theme} />
                 <NavBar />
+                <About />
                 <div className="extra-links">
                     <p>Explore meu portfólio! <a href="#">Veja meus projetos</a></p>
                     <p><a href="#">Entre em contato</a></p>
