@@ -5,7 +5,6 @@ import StyledButton from "../../../../components/StyledButton/StyledButton";
 import CV from "../../../../assets/pdfs/Open.pdf";
 import EmailIcon from '@mui/icons-material/Email';
 import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimatedBackground"
-
 interface HeroProps {
   theme: string;
 }
@@ -60,7 +59,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
             <StyledHero>
                 <Container maxWidth="lg">
                     <Grid container spacing={2}>
-                        <Grid item xs={12} md={5}>
+                        <Grid size={{ xs: 6, md: 4 }}>
                             <Box position="relative">
                                 <Box width={"150%"} position="absolute" top={-100} right={0}>
                                     <AnimatedBackground />
@@ -73,7 +72,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
                                 </Box>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} md={7}>
+                        <Grid size={{ xs: 6, md: 8 }}>
                             <Typography color="primary.contrastText" variant="h1" textAlign="center" pb={2}>
                                 Gerson E. Santos
                             </Typography>
@@ -82,7 +81,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
                             </Typography>
                             
                             <Grid container spacing={3} sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-                                <Grid item xs={10} md={4}>
+                                <Grid size={{ xs: 6, md: 4 }}>
                                     <StyledButton onClick={() => handleDownload()}>
                                         <DownloadIcon />
                                         <Typography>
@@ -90,7 +89,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
                                         </Typography>
                                     </StyledButton>
                                 </Grid>
-                                <Grid item xs={10} md={4}>
+                                <Grid size={{ xs: 6, md: 4 }}>
                                     <StyledButton onClick={() => handleEmail()}>
                                         <EmailIcon />
                                         <Typography>
@@ -101,10 +100,10 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
                             </Grid>
                             
                             <Grid container spacing={3} sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-                                <Grid item xs={12} md={4} sx={{ display: "flex", justifyContent: "center" }}>
+                                <Grid size={{ xs: 6, md: 4 }} sx={{ display: "flex", justifyContent: "center" }}>
                                     {/* Conteúdo adicional aqui */}
                                 </Grid>
-                                <Grid item xs={12} md={4} sx={{ display: "flex", justifyContent: "center" }}>
+                                <Grid size={{ xs: 6, md: 8 }} sx={{ display: "flex", justifyContent: "center" }}>
                                     {/* Conteúdo adicional aqui */}
                                 </Grid>
                             </Grid>
